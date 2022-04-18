@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+  ping-2-expedition:
+    image: ping2expedition
+    build:
+      context: .
+      dockerfile: ./Dockerfile.dev
+    environment:
+      SOME_VAR: ${SOME_VAR}
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/usr/src/app
+    command: ['npm', 'run', 'dev']
