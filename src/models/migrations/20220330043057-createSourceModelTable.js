@@ -48,6 +48,10 @@ module.exports = {
               type: Sequelize.DataTypes.STRING,
               allowNull: false,
             },
+            fileList: {
+              type: Sequelize.DataTypes.ARRAY(Sequelize.DataTypes.STRING),
+              allowNull: true,
+            },
             helpUrl: {
               type: Sequelize.DataTypes.STRING,
               allowNull: true,

@@ -7,29 +7,6 @@ import ProgressBar from 'progress';
 
 import { makeDirectory } from './fileSystem';
 
-const generateTimesteppedDownloadUrl = (data: {
-  fileUrl: string;
-  date: Date;
-  releaseTime: string;
-  timestepPadding: number;
-  timestepIndex: number;
-}) => {
-  const { fileUrl, date, releaseTime, timestepIndex, timestepPadding } = data;
-  const paddedTimestep = String(timestepIndex).padStart(timestepPadding, '0');
-
-  const dayString = String(date.getUTCDate()).padStart(2, '0');
-  const monthString = String(date.getUTCMonth() + 1).padStart(2, '0');
-  const yearString = String(date.getUTCFullYear());
-  let url = fileUrl
-    .replaceAll('Y%Y%Y%Y%', yearString)
-    .replaceAll('M%M%', monthString)
-    .replaceAll('D%D%', dayString)
-    .replaceAll('R%R%', releaseTime.substring(0, 2))
-    .replaceAll(new Array(timestepPadding + 1).join('T%'), paddedTimestep);
-
-  return url;
-};
-
 const downloadToFile = async (urlToDownload: string, fileFormat: string) => {
   const folder = path.resolve(__dirname, '../../operating_folder');
   try {
@@ -100,4 +77,4 @@ const streamFile = async (url: string, writeStream: fs.WriteStream) => {
   }
 };
 
-export { generateTimesteppedDownloadUrl, downloadToFile, streamFile };
+export { downloadToFile, streamFile };

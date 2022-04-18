@@ -4,10 +4,7 @@ import * as turf from '@turf/turf';
 import logger from '../logger';
 import { deleteFile, readDirectory, readFile } from '../utils/fileSystem';
 import sourceModelDAL from '../models/dataAccess/sourceModel';
-import {
-  downloadToFile,
-  generateTimesteppedDownloadUrl,
-} from '../utils/downloadUtil';
+import { downloadToFile } from '../utils/downloadUtil';
 import { getGribDetail } from '../utils/wgribUtil';
 import {
   refreshActiveModel,
@@ -98,15 +95,24 @@ export const loadConfigurations = async () => {
         logger.error(`Config from ${file} are invalid`);
         continue;
       }
-      let url = '';
+
+      let url = fileUrl
+        .replaceAll('{YEAR_STRING}', String(selectedDate.getUTCFullYear()))
+        .replaceAll(
+          '{MONTH_STRING}',
+          String(selectedDate.getUTCMonth() + 1).padStart(2, '0'),
+        )
+        .replaceAll(
+          '{DATE_STRING}',
+          String(selectedDate.getUTCDate()).padStart(2, '0'),
+        )
+        .replaceAll('{RELEASE_TIME}', selectedReleaseTime.substring(0, 2));
       if (timestep) {
-        url = generateTimesteppedDownloadUrl({
-          fileUrl,
-          date: selectedDate,
-          releaseTime: selectedReleaseTime,
-          timestepPadding: timestep.padding,
-          timestepIndex: timestep.beginning,
-        });
+        const timestepReplacer =
+          timestep.padding > 0
+            ? String(timestep.beginning).padStart(timestep.padding, '0')
+            : String(timestep.beginning);
+        url = url.replaceAll('{TIME_STEP}', timestepReplacer);
       }
       const { isSuccess, targetPath } = await downloadToFile(url, fileFormat);
       if (!isSuccess) {
@@ -149,6 +155,7 @@ export const loadConfigurations = async () => {
         })),
         timestep,
         fileUrl,
+        fileList: null, // TODO: Implement file list based
         helpUrl,
         spatialBoundary: spatialBoundary
           ? {
