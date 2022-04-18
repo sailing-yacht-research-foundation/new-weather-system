@@ -1,0 +1,29 @@
+{
+  "name": "GFS_025_WIND_10M",
+  "file_format": ".grib2",
+  "csv_order": {
+    "level": 3,
+    "lon": 4,
+    "lat": 5,
+    "variable": 2,
+    "date": 0,
+    "value": 6
+  },
+  "spatial_resolution": 0.25,
+  "spatial_resolution_units": "degrees",
+  "availability_utc": [
+    { "release_time": "00:00", "available_time": "05:35" },
+    { "release_time": "06:00", "available_time": "11:35" },
+    { "release_time": "12:00", "available_time": "17:35" },
+    { "release_time": "18:00", "available_time": "23:35" }
+  ],
+  "timestep": {
+    "resolution": 1,
+    "beginning": 0,
+    "milliseconds": 3600000,
+    "max": 120,
+    "padding": 3
+  },
+  "file_url": "https://nomads.ncep.noaa.gov/cgi-bin/filter_gfs_0p25_1hr.pl?file=gfs.tR%R%z.pgrb2.0p25.fT%T%T%&lev_10_m_above_ground=on&var_UGRD=on&var_VGRD=on&leftlon=0&rightlon=360&toplat=90&bottomlat=-90&dir=%2Fgfs.Y%Y%Y%Y%M%M%D%D%%2FR%R%%2Fatmos",
+  "help_url": "https://www.emc.ncep.noaa.gov/emc/pages/numerical_forecast_systems/gfs.php"
+}
