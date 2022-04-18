@@ -41,6 +41,7 @@ export const loadConfigurations = async () => {
         spatial_resolution_units: spatialResolutionUnits,
         availability_utc: availabilityUtc,
         timestep = null,
+        file_list: fileList = null,
         file_url: fileUrl,
         help_url: helpUrl = null,
       } = config;
@@ -113,6 +114,8 @@ export const loadConfigurations = async () => {
             ? String(timestep.beginning).padStart(timestep.padding, '0')
             : String(timestep.beginning);
         url = url.replaceAll('{TIME_STEP}', timestepReplacer);
+      } else if (fileList && fileList.length > 0) {
+        url = `${url}${fileList[0]}`;
       }
       const { isSuccess, targetPath } = await downloadToFile(url, fileFormat);
       if (!isSuccess) {

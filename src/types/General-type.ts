@@ -34,4 +34,5 @@ export type ConfigurationFileContent = {
   timestep?: ConfigurationTimeStep;
   file_url: string;
   help_url?: string;
+  file_list?: string[];
 };
