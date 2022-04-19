@@ -4,6 +4,8 @@ import createServer from './server';
 import logger from './logger';
 import db from './models/index';
 import { loadConfigurations } from './services/loadConfigurations';
+import { startScheduler } from './services/scheduler';
+import { initDownloadQueue } from './serverQueues';
 
 const port = process.env.PORT || 3000;
 var systemStatus = {
@@ -19,6 +21,8 @@ var systemStatus = {
       app.listen(port, async () => {
         logger.info(`Weather Archiver has started! Listening on ${port}`);
         await loadConfigurations();
+        startScheduler();
+        await initDownloadQueue();
       });
     }
   } catch (error) {

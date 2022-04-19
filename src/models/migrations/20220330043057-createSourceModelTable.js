@@ -45,11 +45,15 @@ module.exports = {
               allowNull: true,
             },
             fileUrl: {
-              type: Sequelize.DataTypes.STRING,
+              type: Sequelize.DataTypes.TEXT,
               allowNull: false,
             },
+            fileList: {
+              type: Sequelize.DataTypes.ARRAY(Sequelize.DataTypes.TEXT),
+              allowNull: true,
+            },
             helpUrl: {
-              type: Sequelize.DataTypes.STRING,
+              type: Sequelize.DataTypes.TEXT,
               allowNull: true,
             },
             paramList: {

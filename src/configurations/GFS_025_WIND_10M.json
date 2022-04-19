@@ -24,6 +24,6 @@
     "max": 120,
     "padding": 3
   },
-  "file_url": "https://nomads.ncep.noaa.gov/cgi-bin/filter_gfs_0p25_1hr.pl?file=gfs.tR%R%z.pgrb2.0p25.fT%T%T%&lev_10_m_above_ground=on&var_UGRD=on&var_VGRD=on&leftlon=0&rightlon=360&toplat=90&bottomlat=-90&dir=%2Fgfs.Y%Y%Y%Y%M%M%D%D%%2FR%R%%2Fatmos",
+  "file_url": "https://nomads.ncep.noaa.gov/cgi-bin/filter_gfs_0p25_1hr.pl?file=gfs.t{RELEASE_TIME}z.pgrb2.0p25.f{TIME_STEP}&lev_10_m_above_ground=on&var_UGRD=on&var_VGRD=on&leftlon=0&rightlon=360&toplat=90&bottomlat=-90&dir=%2Fgfs.{YEAR_STRING}{MONTH_STRING}{DATE_STRING}%2F{RELEASE_TIME}%2Fatmos",
   "help_url": "https://www.emc.ncep.noaa.gov/emc/pages/numerical_forecast_systems/gfs.php"
 }

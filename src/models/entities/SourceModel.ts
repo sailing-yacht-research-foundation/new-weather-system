@@ -27,6 +27,7 @@ export class SourceModel extends Model<
   }[];
   declare timestep: ConfigurationTimeStep | null;
   declare fileUrl: string;
+  declare fileList: string[] | null;
   declare helpUrl: string | null;
   declare spatialBoundary: GeometryPolygon | null;
   declare paramList: { [key: string]: string }[] | null;
@@ -65,11 +66,15 @@ export default (sequelize: Sequelize) => {
         allowNull: true,
       },
       fileUrl: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: false,
       },
+      fileList: {
+        type: DataTypes.ARRAY(DataTypes.TEXT),
+        allowNull: true,
+      },
       helpUrl: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: true,
       },
       paramList: {

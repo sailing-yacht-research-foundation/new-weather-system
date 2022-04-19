@@ -1,6 +1,7 @@
 import { Sequelize } from 'sequelize';
 
 import SourceModel from './entities/SourceModel';
+import FileToDownload from './entities/FileToDownload';
 
 const dbName = process.env.DB_NAME || 'localhost';
 const dbUser = process.env.DB_USER || 'postgres';
@@ -18,6 +19,7 @@ const db = {
   sequelize,
   Sequelize,
   sourceModel: SourceModel(sequelize),
+  fileToDownload: FileToDownload(sequelize),
   startDB: async () => {
     await sequelize.authenticate();
   },

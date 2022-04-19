@@ -15,3 +15,13 @@ If we wanted to add or remove models, it would be as simple as adding or removin
 References:
 
 - https://carltonbale.com/how-to-create-and-seed-a-torrent-download-on-amazon-s3/
+
+TODO:
+
+- Rename this repo to whatever we want to call this new system
+- Download Gribs to S3
+- Log failed downloads (reason, download date trial)
+- Migrate python script to convert .nc to .grib from old weather archiver (Modify the script to accept a filepath instead of targeting all the .nc file)
+- Implement different queue to handle conversion of nc files and downloading
+- Get & save the torrent information
+- Implement terraform config for one button deploy with k8s, helm

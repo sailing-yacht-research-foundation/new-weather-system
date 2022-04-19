@@ -178,4 +178,5 @@ RUN npm install -g typescript
 RUN npm ci
 COPY ./src ./src
 EXPOSE 3000
-CMD ["npm", "run", "dev"]
+
+CMD ["sh","-c","npm run db:migrate && npm dev"]
