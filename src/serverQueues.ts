@@ -5,10 +5,10 @@ import {
 } from './constants/system';
 import { getModel } from './dataStore';
 import logger from './logger';
-import downloadQueueDAL from './models/dataAccess/downloadQueue';
-import { DownloadQueue } from './models/entities/DownloadQueue';
+import fileToDownloadDAL from './models/dataAccess/fileToDownload';
+import { FileToDownload } from './models/entities/FileToDownload';
 
-var dlQueue = new Queue<DownloadQueue>({
+var dlQueue = new Queue<FileToDownload>({
   maxConcurrentProcess: MAX_CONCURRENT_DOWNLOAD,
   processFunction: async (data) => {
     const { modelName, downloadUrl } = data;
@@ -30,7 +30,7 @@ const initDownloadQueue = async () => {
   while (!isSuccess && tryCount < MAX_RETRY_INIT_QUEUE) {
     tryCount++;
     try {
-      const data = await downloadQueueDAL.getAll();
+      const data = await fileToDownloadDAL.getAll();
       dlQueue.enqueue(data);
       logger.info(
         `Init Download Queue Successful, queued: ${data.length} urls`,

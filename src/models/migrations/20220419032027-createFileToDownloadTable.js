@@ -1,6 +1,6 @@
 'use strict';
 
-const tableName = 'DownloadQueues';
+const tableName = 'FileToDownloads';
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {

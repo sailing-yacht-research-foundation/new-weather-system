@@ -1,20 +1,20 @@
 import db from '..';
 
 import { InferCreationAttributes, Transaction } from 'sequelize/types';
-import { DownloadQueue } from '../entities/DownloadQueue';
+import { FileToDownload } from '../entities/FileToDownload';
 
 const getAll = async () => {
-  const downloadQueue = await db.downloadQueue.findAll({
+  const files = await db.fileToDownload.findAll({
     order: [['createdAt', 'ASC']],
   });
-  return downloadQueue;
+  return files;
 };
 
 const insert = async (
-  data: InferCreationAttributes<DownloadQueue>,
+  data: InferCreationAttributes<FileToDownload>,
   options?: { transaction: Transaction },
 ) => {
-  const result = await db.downloadQueue.create(data, options);
+  const result = await db.fileToDownload.create(data, options);
   return result;
 };
 
@@ -22,7 +22,7 @@ const bulkInsert = async (
   data: { downloadUrl: string; modelName: string }[],
   options?: { transaction: Transaction },
 ) => {
-  const result = await db.downloadQueue.bulkCreate(data, {
+  const result = await db.fileToDownload.bulkCreate(data, {
     ...options,
     ignoreDuplicates: true,
     validate: true,
@@ -34,7 +34,7 @@ const deleteQueue = async (
   id: string,
   options?: { transaction: Transaction },
 ) => {
-  const deletedCount = await db.downloadQueue.destroy({
+  const deletedCount = await db.fileToDownload.destroy({
     where: { id },
     ...options,
   });

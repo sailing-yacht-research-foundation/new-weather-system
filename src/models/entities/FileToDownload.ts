@@ -7,16 +7,16 @@ import {
   Sequelize,
 } from 'sequelize';
 
-export class DownloadQueue extends Model<
-  InferAttributes<DownloadQueue>,
-  InferCreationAttributes<DownloadQueue>
+export class FileToDownload extends Model<
+  InferAttributes<FileToDownload>,
+  InferCreationAttributes<FileToDownload>
 > {
   declare id: CreationOptional<string>;
   declare modelName: string;
   declare downloadUrl: string;
 }
 export default (sequelize: Sequelize) => {
-  return DownloadQueue.init(
+  return FileToDownload.init(
     {
       id: {
         type: DataTypes.UUID,
@@ -34,7 +34,7 @@ export default (sequelize: Sequelize) => {
     },
     {
       sequelize,
-      tableName: 'DownloadQueues',
+      tableName: 'FileToDownloads',
     },
   );
 };

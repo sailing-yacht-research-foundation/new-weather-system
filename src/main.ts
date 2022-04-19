@@ -5,7 +5,7 @@ import logger from './logger';
 import db from './models/index';
 import { loadConfigurations } from './services/loadConfigurations';
 import { startScheduler } from './services/scheduler';
-import { initDownloadQueue } from './jobQueues';
+import { initDownloadQueue } from './serverQueues';
 
 const port = process.env.PORT || 3000;
 var systemStatus = {
