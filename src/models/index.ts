@@ -1,4 +1,5 @@
 import { Sequelize } from 'sequelize';
+import DownloadQueue from './entities/DownloadQueue';
 
 import SourceModel from './entities/SourceModel';
 
@@ -18,6 +19,7 @@ const db = {
   sequelize,
   Sequelize,
   sourceModel: SourceModel(sequelize),
+  downloadQueue: DownloadQueue(sequelize),
   startDB: async () => {
     await sequelize.authenticate();
   },

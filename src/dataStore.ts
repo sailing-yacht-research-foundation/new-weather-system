@@ -11,5 +11,8 @@ const refreshActiveModel = () => {
 const getActiveModel = () => {
   return [...activeModels];
 };
+const getModel = (modelName: string) => {
+  return activeModels.find((row) => row.name === modelName);
+};
 
-export { addActiveModel, refreshActiveModel, getActiveModel };
+export { addActiveModel, refreshActiveModel, getActiveModel, getModel };

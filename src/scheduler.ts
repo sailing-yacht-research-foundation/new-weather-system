@@ -1,7 +1,10 @@
 import schedule from 'node-schedule';
+
 import { POPULATE_DOWNLOAD_SCHEDULER_NAME } from './constants/system';
 import { getActiveModel } from './dataStore';
+import downloadQueueDAL from './models/dataAccess/downloadQueue';
 import logger from './logger';
+import { dlQueue } from './jobQueues';
 
 var populateDownloadJob: schedule.Job;
 
@@ -116,8 +119,12 @@ function startScheduler() {
           }
         }
       }
-      // TODO: Store to QUEUE
-      console.log(newUrlsToDownload);
+      downloadQueueDAL.bulkInsert(newUrlsToDownload).then((data) => {
+        if (data.length > 0) {
+          dlQueue.enqueue(data);
+          logger.info(`New URLs has been queued`);
+        }
+      });
     },
   );
 }
