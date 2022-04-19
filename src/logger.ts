@@ -16,7 +16,7 @@ winston.addColors({
 
 const logger = createLogger({
   format: combine(errors({ stack: true }), timestamp(), logFormat),
-  defaultMeta: { service: 'ping2expedition' },
+  defaultMeta: { service: 'weather-archiver' },
   exceptionHandlers: [
     new transports.File({ filename: `${logFolder}/exceptions.log` }),
     new transports.Console({
