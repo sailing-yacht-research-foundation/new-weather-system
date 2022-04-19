@@ -22,9 +22,6 @@ function startScheduler() {
         currentMinute,
       ).padStart(2, '0')}`;
 
-      logger.info(
-        `Running scheduled [${POPULATE_DOWNLOAD_SCHEDULER_NAME}]. Current time: ${currentTime}`,
-      );
       const yesterday = new Date(currentDate);
       yesterday.setDate(currentDate.getDate() - 1);
       //   const modelsWithDownloadableFile = activeModels.map((model) => {
@@ -54,7 +51,7 @@ function startScheduler() {
           const { releaseTime, availableTime } = availabilityUtc[i];
           if (currentTime === availableTime) {
             logger.info(
-              `${modelName} should have some files ready to download at this time`,
+              `Running populating scheduler: ${modelName} should have some files ready to download at this time`,
             );
             let dayString = String(currentDay).padStart(2, '0');
             let monthString = String(currentMonth).padStart(2, '0');
@@ -109,6 +106,7 @@ function startScheduler() {
                     timestepReplacer,
                   ),
                 });
+                totalFileCount++;
               }
             }
 

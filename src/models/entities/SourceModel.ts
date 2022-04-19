@@ -66,15 +66,15 @@ export default (sequelize: Sequelize) => {
         allowNull: true,
       },
       fileUrl: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: false,
       },
       fileList: {
-        type: DataTypes.ARRAY(DataTypes.STRING),
+        type: DataTypes.ARRAY(DataTypes.TEXT),
         allowNull: true,
       },
       helpUrl: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: true,
       },
       paramList: {
