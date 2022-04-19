@@ -1,10 +1,10 @@
 import schedule from 'node-schedule';
 
-import { POPULATE_DOWNLOAD_SCHEDULER_NAME } from './constants/system';
-import { getActiveModel } from './dataStore';
-import downloadQueueDAL from './models/dataAccess/downloadQueue';
-import logger from './logger';
-import { dlQueue } from './jobQueues';
+import { POPULATE_DOWNLOAD_SCHEDULER_NAME } from '../constants/system';
+import { getActiveModel } from '../dataStore';
+import downloadQueueDAL from '../models/dataAccess/downloadQueue';
+import logger from '../logger';
+import { dlQueue } from '../jobQueues';
 
 var populateDownloadJob: schedule.Job;
 
@@ -27,17 +27,6 @@ function startScheduler() {
 
       const yesterday = new Date(currentDate);
       yesterday.setDate(currentDate.getDate() - 1);
-      //   const modelsWithDownloadableFile = activeModels.map((model) => {
-      //     const { availabilityUtc } = model;
-      //     let hasDownloadables = false;
-      //     for (let i = 0; i < availabilityUtc.length; i++) {
-      //       const { availableTime } = availabilityUtc[i];
-      //       if (currentTime === availableTime) {
-      //         hasDownloadables = true;
-      //       }
-      //     }
-      //     return hasDownloadables;
-      //   });
       const newUrlsToDownload: {
         modelName: string;
         downloadUrl: string;

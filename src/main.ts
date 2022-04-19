@@ -4,7 +4,7 @@ import createServer from './server';
 import logger from './logger';
 import db from './models/index';
 import { loadConfigurations } from './services/loadConfigurations';
-import { startScheduler } from './scheduler';
+import { startScheduler } from './services/scheduler';
 import { initDownloadQueue } from './jobQueues';
 
 const port = process.env.PORT || 3000;
